@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -52,15 +52,15 @@ class Login extends Component {
         </View>
 
         <Text style={styles.forgot_button}>
-          anda belum punya akun ?{' '}
+          anda punya akun ?{' '}
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Register')}>
-            <Text style={{color: 'blue'}}> Register </Text>
+            onPress={() => this.props.navigation.navigate('Login')}>
+            <Text style={{color: 'blue'}}> Login </Text>
           </TouchableOpacity>
         </Text>
 
         <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>LOGIN</Text>
+          <Text style={styles.loginText}>Register</Text>
         </TouchableOpacity>
       </View>
     );
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Register;
