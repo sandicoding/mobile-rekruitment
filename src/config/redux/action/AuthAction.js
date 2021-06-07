@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {Alert, NativeModules, ToastAndroid} from 'react-native';
 import Toast from 'react-native-toast-message';
-import {env} from '../../env';
-import {setHeaderToken} from '../config/axios/setHeaderToken';
+import {env} from '../../../../env';
+import {setHeaderToken} from '../../axios/setHeaderToken';
 
 import {
   IS_LOADING,
@@ -13,14 +13,14 @@ import {
   SET_IS_LOGIN,
   SET_TOKEN,
   SET_USER,
-} from '../config/const';
+} from '../../const';
 
 export const login =
   (data, navigation = null) =>
   dispatch => {
     dispatch({type: IS_LOADING});
     axios
-      .post(`${env.API_URL}/auth/login`, data)
+      .post(`${env.API_URL}/login`, data)
       .then(async result => {
         if (result.data) {
           let response = result.data;
@@ -34,20 +34,20 @@ export const login =
           dispatch({type: SET_IS_LOGIN});
           dispatch({type: IS_LOADING});
           setHeaderToken(token);
-          let initialRouteName = 'Home';
 
-          return navigation.navigate('CheckIfLoggin', {initialRouteName});
+          return navigation.replace('MainLayout');
         }
       })
       .catch(err => {
-        let result = err.response;
-        if (result?.data) {
-          ToastAndroid.showWithGravity(
-            result.data.message,
-            ToastAndroid.SHORT,
-            ToastAndroid.BOTTOM,
-          );
-        }
+        console.warn(err);
+        // let result = err.response;
+        // if (result?.data) {
+        //   ToastAndroid.showWithGravity(
+        //     result.data.message,
+        //     ToastAndroid.SHORT,
+        //     ToastAndroid.BOTTOM,
+        //   );
+        // }
       });
   };
 

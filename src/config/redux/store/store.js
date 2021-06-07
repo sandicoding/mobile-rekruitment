@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {createStore, applyMiddleware} from 'redux';
-import {persistStore, persistReducer} from 'redux-persist';
+import {applyMiddleware, createStore} from 'redux';
+import persistReducer from 'redux-persist/es/persistReducer';
+import persistStore from 'redux-persist/es/persistStore';
 import thunk from 'redux-thunk';
-import {setHeaderToken} from '../axios/setHeaderToken';
-import rootReducer from './reducer';
+import rootReducer from '../reducer';
 
 // Note: this API requires redux@>=3.1.0
 const persistConfig = {

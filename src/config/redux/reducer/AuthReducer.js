@@ -9,7 +9,7 @@ import {
   SET_INITIAL_ROUTE_NAME,
   SET_IS_LOGIN,
   IS_LOADING,
-} from '../config/const';
+} from '../../const';
 
 const INITIAL_STATE = {
   accessToken: null,

@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {connect} from 'react-redux';
+import {login} from '../../config/redux/action/AuthAction';
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
@@ -24,7 +26,19 @@ class Login extends Component {
     }));
   };
 
+  handelClickLogin = () => {
+    const {navigation, login} = this.props;
+    const {email, password} = this.state;
+    const data = {
+      email,
+      password,
+    };
+    login(data, navigation);
+  };
+
   render() {
+    const {isLogin} = this.props;
+    console.warn(isLogin);
     return (
       <View style={styles.container}>
         <Image
@@ -59,7 +73,9 @@ class Login extends Component {
           </TouchableOpacity>
         </Text>
 
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity
+          onPress={() => this.handelClickLogin()}
+          style={styles.loginBtn}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
       </View>
@@ -117,4 +133,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+const mapStateToprops = ({auth}) => ({
+  isLogin: auth.isLoggin,
+});
+
+export default connect(mapStateToprops, {login})(Login);

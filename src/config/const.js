@@ -7,3 +7,4 @@ export const SET_USER = 'SET_USER';
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_INITIAL_ROUTE_NAME = 'SET_INITIAL_ROUTE_NAME';
 export const SET_IS_LOGIN = 'SET_IS_LOGIN';
+export const IS_LOADING = 'IS_LOADING';

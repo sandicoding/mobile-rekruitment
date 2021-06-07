@@ -1,12 +1,15 @@
 import React from 'react';
-import Login from '../pages/login';
 import {createStackNavigator} from '@react-navigation/stack';
-import Register from '../pages/register';
+import {Login, Register} from '../pages';
+import Tabs from '../tabs/MyTabs';
 
 const Stack = createStackNavigator();
 const Router = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen
         name="Login"
         options={{headerShown: false}}
@@ -17,6 +20,7 @@ const Router = () => {
         options={{headerShown: false}}
         component={Register}
       />
+      <Stack.Screen name="MainLayout" component={Tabs} />
     </Stack.Navigator>
   );
 };
