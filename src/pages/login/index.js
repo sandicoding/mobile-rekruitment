@@ -74,7 +74,7 @@ class Login extends Component {
         </Text>
 
         <TouchableOpacity
-          onPress={() => this.handelClickLogin()}
+          onPress={() => this.props.navigation.navigate('MainLayout')}
           style={styles.loginBtn}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>

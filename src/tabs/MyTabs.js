@@ -3,7 +3,8 @@ import {TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {Home, Status, Job, Profile} from '../pages';
-import {COLORS} from '../constants';
+import {COLORS, icons} from '../constants';
+import {IconTabs} from '../iconTabs';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,15 +12,65 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
+        showLabel: false,
         style: {
+          height: 110,
           backgroundColor: COLORS.primary,
           borderTopColor: 'transparent',
         },
       }}>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Job" component={Job} />
-      <Tab.Screen name="Status" component={Status} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <IconTabs focused={focused} icon={icons.home} label="Home" />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Job"
+        component={Job}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <IconTabs
+                focused={focused}
+                icon={icons.briefcase}
+                label="Lowongan"
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Status"
+        component={Status}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <IconTabs focused={focused} icon={icons.market} label="Status" />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <IconTabs
+                focused={focused}
+                icon={icons.profile}
+                label="Profile"
+              />
+            );
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };
