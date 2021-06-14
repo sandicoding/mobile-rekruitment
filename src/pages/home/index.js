@@ -1,102 +1,221 @@
 import React from 'react';
+import {View, Text, Image, TextInput} from 'react-native';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {
-  Text,
-  View,
-  StyleSheet,
-  ImageBackground,
-  ScrollView,
-  Image,
-} from 'react-native';
-import {COLORS, FONTS} from '../../constants';
-
-const Home = () => {
-  return (
-    // <View style={styles.mainContainer}>
-    //   <View style={styles.container}>
-    //     <Text
-    //       style={{
-    //         color: COLORS.white,
-    //         ...FONTS.h1,
-    //       }}>
-    //       Welcome, Here
-    //     </Text>
-    //     <Text
-    //       style={{
-    //         color: COLORS.white,
-    //         ...FONTS.h3,
-    //       }}>
-    //       Mari bekerja sama bersama kami !
-    //     </Text>
-    //     <Text
-    //       style={{
-    //         color: COLORS.white,
-    //         ...FONTS.h4,
-    //         marginTop: 20,
-    //       }}>
-    //       CV Jaya Bersama adalah perusahan Agency dari perbankan disini anda
-    //       akan menemukan pengalaman baru bersama kami !
-    //     </Text>
-    //   </View>
-    // </View>
-    <ImageBackground
-      source={require('../../assets/image/back.png')}
-      style={{width: '100%', height: '100%'}}>
-      <View
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+export default class Home extends React.Component {
+  render() {
+    return (
+      <ScrollView
         style={{
-          paddingHorizontal: 40,
-          marginTop: 25,
+          backgroundColor: '#F8F8F8',
+          paddingHorizontal: 20,
         }}>
         <Text
           style={{
-            fontSize: 40,
-            color: '#522289',
-            fontFamily: 'RobotoBold',
+            color: '#B0B0B0',
+            marginTop: 40,
+            fontFamily: 'Montserrat-Bold',
           }}>
-          Hello
+          Hello Brad
         </Text>
 
         <Text
           style={{
+            fontFamily: 'Montserrat-ExtraBold',
+            fontSize: 18,
+            marginTop: 13,
+          }}>
+          Find your best jobs
+        </Text>
+
+        <View
+          style={{
+            backgroundColor: '#FFF',
+            borderRadius: 5,
+            padding: 5,
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 20,
+            justifyContent: 'space-between',
+          }}>
+          <TextInput
+            placeholder="What are you looking for?"
+            placeholderTextColor="#B0B0B0"
+            style={{
+              fontFamily: 'Montserrat-Medium',
+              paddingHorizontal: 20,
+            }}
+          />
+          <View
+            style={{
+              backgroundColor: '#000000',
+              width: wp(10),
+              height: hp(5),
+              borderRadius: 8,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Image source={require('../../assets/image/searc.png')} />
+          </View>
+        </View>
+        {/* <Text
+          style={{
+            fontFamily: 'Montserrat-ExtraBold',
+            marginTop: 20,
             fontSize: 15,
-            paddingVertical: 10,
-
-            lineHeight: 22,
-            fontFamily: 'RobotoRegular',
-            color: COLORS.black,
           }}>
-          CV Jaya Bersama adalah perusahan Agency dari perbankan disini anda
-          akan menemukan pengalaman baru bersama kami !
+          Populer
         </Text>
-      </View>
-      <View style={{paddingHorizontal: 40, marginTop: 25}}>
+
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View
+            style={{
+              backgroundColor: '#FFF',
+              height: hp(30),
+              width: wp(37),
+              borderRadius: 20,
+              marginTop: 35,
+            }}>
+            <Image
+              source={require('../../assets/image/dev.png')}
+              style={{width: 150, height: 150}}
+            />
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Detail')}
+              style={{
+                backgroundColor: '#000',
+                height: 60,
+                borderRadius: 20,
+                marginTop: -10,
+                paddingHorizontal: 8,
+                paddingVertical: 8,
+              }}>
+              <Text
+                style={{
+                  color: '#FFF',
+                  fontFamily: 'Montserrat-SemiBold',
+                  fontSize: 13,
+                }}>
+                Software Developer
+              </Text>
+
+              <View style={{flexDirection: 'row', marginTop: 4}}>
+                <View
+                  style={{
+                    backgroundColor: '#3E3C3C',
+                    paddingHorizontal: 5,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 5,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#B0B0B0',
+                      fontFamily: 'Bold',
+                      fontSize: 13,
+                    }}>
+                    Full time
+                  </Text>
+                </View>
+
+                <Text
+                  style={{
+                    color: '#B0B0B0',
+                    fontFamily: 'Bold',
+                    fontSize: 13,
+                    marginLeft: 25,
+                  }}>
+                  $50/h
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ScrollView> */}
         <Text
           style={{
-            color: '#FFF',
-            fontFamily: 'RobotoRegular',
-            marginTop: 50,
-            fontSize: 17,
+            fontFamily: 'Montserrat-ExtraBold',
+            marginVertical: 20,
+            fontSize: 15,
           }}>
-          Galeri
+          Lowongan
         </Text>
-      </View>
-    </ImageBackground>
-  );
-};
 
-// const styles = StyleSheet.create({
-//   container: {
-//     height: 240,
-//     width: 350,
-//     padding: 15,
-//     borderRadius: 20,
-//     backgroundColor: '#34495e',
-//     marginTop: 30,
-//   },
-//   mainContainer: {
-//     alignItems: 'center',
-//     backgroundColor: '#2c3e50',
-//     flex: 1,
-//   },
-// });
+        <View
+          style={{
+            backgroundColor: '#FFF',
+            marginTop: 10,
+            flexDirection: 'row',
+            borderRadius: 10,
+            height: 60,
+            alignItems: 'center',
+            paddingHorizontal: 20,
+          }}>
+          <View
+            style={{
+              backgroundColor: '#DFDFDF',
+              borderRadius: 5,
+              height: 40,
+              width: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Image
+              source={require('../../assets/image/pentool.png')}
+              style={{width: wp(6), height: hp(6)}}
+            />
+          </View>
 
-export default Home;
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              width: wp(70),
+              paddingHorizontal: 10,
+            }}>
+            <View
+              style={{
+                paddingHorizontal: 20,
+              }}>
+              <Text
+                style={{
+                  fontFamily: 'Montserrat-ExtraBold',
+                  fontSize: 13,
+                }}>
+                Graphic Designer
+              </Text>
+              <View
+                style={{
+                  backgroundColor: '#DFDFDF',
+                  borderRadius: 5,
+                  width: 70,
+                  alignItems: 'center',
+                  marginVertical: 5,
+                }}>
+                <Text
+                  style={{fontFamily: 'Medium', color: '#000', opacity: 0.5}}>
+                  Part time
+                </Text>
+              </View>
+            </View>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('DetailJob')}>
+              <Text
+                style={{
+                  fontFamily: 'Montserrat-ExtraBold',
+                  fontSize: 18,
+                  marginTop: 10,
+                  color: '#125d98',
+                }}>
+                Detail
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+}

@@ -9,6 +9,10 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {login} from '../../config/redux/action/AuthAction';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 class Login extends Component {
   constructor(props) {
@@ -48,18 +52,26 @@ class Login extends Component {
 
         <View style={styles.inputView}>
           <TextInput
-            style={styles.TextInput}
-            placeholder="Email."
-            placeholderTextColor="#003f5c"
+            placeholder="Email"
+            placeholderTextColor="#B0B0B0"
+            style={{
+              fontFamily: 'Montserrat-Medium',
+              paddingHorizontal: 20,
+              width: wp('80%'),
+            }}
             onChangeText={e => this.handleChangeText('email', e)}
           />
         </View>
 
         <View style={styles.inputView}>
           <TextInput
-            style={styles.TextInput}
-            placeholder="Password."
-            placeholderTextColor="#003f5c"
+            placeholder="Password"
+            placeholderTextColor="#B0B0B0"
+            style={{
+              fontFamily: 'Montserrat-Medium',
+              paddingHorizontal: 20,
+              width: wp('80%'),
+            }}
             secureTextEntry={true}
             onChangeText={e => this.handleChangeText('password', e)}
           />
@@ -86,7 +98,6 @@ class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -98,13 +109,13 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    backgroundColor: '#FFC0CB',
-    borderRadius: 30,
-    width: '70%',
-    height: 45,
-    marginBottom: 20,
-
+    backgroundColor: '#FFF',
+    borderRadius: 5,
+    padding: 5,
+    flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 20,
+    justifyContent: 'space-between',
   },
 
   TextInput: {
@@ -121,12 +132,12 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     width: '80%',
-    borderRadius: 25,
+    borderRadius: 10,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 40,
-    backgroundColor: '#FF1493',
+    backgroundColor: 'black',
   },
   loginText: {
     color: 'white',

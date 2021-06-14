@@ -14,7 +14,7 @@ const Tabs = () => {
       tabBarOptions={{
         showLabel: false,
         style: {
-          height: 110,
+          height: 80,
           backgroundColor: COLORS.primary,
           borderTopColor: 'transparent',
         },
@@ -30,7 +30,7 @@ const Tabs = () => {
           },
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Job"
         component={Job}
         options={{
@@ -44,7 +44,7 @@ const Tabs = () => {
             );
           },
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Status"
         component={Status}

@@ -27,6 +27,7 @@ const Job = () => {
   return (
     <ImageBackground
       source={require('../../assets/image/back2.png')}
+      resizeMode="cover"
       style={{width: '100%', height: '100%'}}>
       <View style={styles.container}>
         <Text

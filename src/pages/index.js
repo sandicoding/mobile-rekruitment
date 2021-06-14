@@ -4,5 +4,6 @@ import Job from './job';
 import Status from './status';
 import Login from './login';
 import Register from './register';
+import DetailJob from './job/component/DetailJob';
 
-export {Home, Profile, Job, Status, Login, Register};
+export {Home, Profile, Job, Status, Login, Register, DetailJob};
