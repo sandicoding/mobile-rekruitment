@@ -49,6 +49,14 @@ class Login extends Component {
           style={styles.image}
           source={require('../../assets/image/logocv.png')}
         />
+        <Text
+          style={{
+            fontFamily: 'Montserrat-ExtraBold',
+            fontSize: 18,
+            marginTop: 13,
+          }}>
+          Login
+        </Text>
 
         <View style={styles.inputView}>
           <TextInput

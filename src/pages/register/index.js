@@ -7,11 +7,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
+      name: '',
       email: '',
       password: '',
     };
@@ -32,20 +37,50 @@ class Register extends Component {
           source={require('../../assets/image/logocv.png')}
         />
 
+        <Text
+          style={{
+            fontFamily: 'Montserrat-ExtraBold',
+            fontSize: 18,
+            marginTop: 13,
+          }}>
+          Register
+        </Text>
+
         <View style={styles.inputView}>
           <TextInput
-            style={styles.TextInput}
-            placeholder="Email."
-            placeholderTextColor="#003f5c"
+            placeholder="Name"
+            placeholderTextColor="#B0B0B0"
+            style={{
+              fontFamily: 'Montserrat-Medium',
+              paddingHorizontal: 20,
+              width: wp('80%'),
+            }}
+            onChangeText={e => this.handleChangeText('name', e)}
+          />
+        </View>
+
+        <View style={styles.inputView}>
+          <TextInput
+            placeholder="Email"
+            placeholderTextColor="#B0B0B0"
+            style={{
+              fontFamily: 'Montserrat-Medium',
+              paddingHorizontal: 20,
+              width: wp('80%'),
+            }}
             onChangeText={e => this.handleChangeText('email', e)}
           />
         </View>
 
         <View style={styles.inputView}>
           <TextInput
-            style={styles.TextInput}
-            placeholder="Password."
-            placeholderTextColor="#003f5c"
+            placeholder="Password"
+            placeholderTextColor="#B0B0B0"
+            style={{
+              fontFamily: 'Montserrat-Medium',
+              paddingHorizontal: 20,
+              width: wp('80%'),
+            }}
             secureTextEntry={true}
             onChangeText={e => this.handleChangeText('password', e)}
           />
@@ -70,7 +105,6 @@ class Register extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -82,13 +116,13 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    backgroundColor: '#FFC0CB',
-    borderRadius: 30,
-    width: '70%',
-    height: 45,
-    marginBottom: 20,
-
+    backgroundColor: '#FFF',
+    borderRadius: 5,
+    padding: 5,
+    flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 20,
+    justifyContent: 'space-between',
   },
 
   TextInput: {
@@ -105,12 +139,12 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     width: '80%',
-    borderRadius: 25,
+    borderRadius: 10,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 40,
-    backgroundColor: '#FF1493',
+    backgroundColor: 'black',
   },
   loginText: {
     color: 'white',
