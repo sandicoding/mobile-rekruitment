@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Login, Register, DetailJob} from '../pages';
+import {Login, Register, DetailJob, DetailStatus} from '../pages';
 import Tabs from '../tabs/MyTabs';
 
 const Stack = createStackNavigator();
@@ -25,6 +25,11 @@ const Router = () => {
         name="DetailJob"
         options={{headerShown: false}}
         component={DetailJob}
+      />
+      <Stack.Screen
+        name="DetailStatus"
+        options={{headerShown: false}}
+        component={DetailStatus}
       />
     </Stack.Navigator>
   );

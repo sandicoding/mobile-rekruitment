@@ -5,7 +5,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 export default class Home extends React.Component {
   render() {
     return (
@@ -62,79 +62,7 @@ export default class Home extends React.Component {
             <Image source={require('../../assets/image/searc.png')} />
           </View>
         </View>
-        {/* <Text
-          style={{
-            fontFamily: 'Montserrat-ExtraBold',
-            marginTop: 20,
-            fontSize: 15,
-          }}>
-          Populer
-        </Text>
 
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View
-            style={{
-              backgroundColor: '#FFF',
-              height: hp(30),
-              width: wp(37),
-              borderRadius: 20,
-              marginTop: 35,
-            }}>
-            <Image
-              source={require('../../assets/image/dev.png')}
-              style={{width: 150, height: 150}}
-            />
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Detail')}
-              style={{
-                backgroundColor: '#000',
-                height: 60,
-                borderRadius: 20,
-                marginTop: -10,
-                paddingHorizontal: 8,
-                paddingVertical: 8,
-              }}>
-              <Text
-                style={{
-                  color: '#FFF',
-                  fontFamily: 'Montserrat-SemiBold',
-                  fontSize: 13,
-                }}>
-                Software Developer
-              </Text>
-
-              <View style={{flexDirection: 'row', marginTop: 4}}>
-                <View
-                  style={{
-                    backgroundColor: '#3E3C3C',
-                    paddingHorizontal: 5,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 5,
-                  }}>
-                  <Text
-                    style={{
-                      color: '#B0B0B0',
-                      fontFamily: 'Bold',
-                      fontSize: 13,
-                    }}>
-                    Full time
-                  </Text>
-                </View>
-
-                <Text
-                  style={{
-                    color: '#B0B0B0',
-                    fontFamily: 'Bold',
-                    fontSize: 13,
-                    marginLeft: 25,
-                  }}>
-                  $50/h
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </ScrollView> */}
         <Text
           style={{
             fontFamily: 'Montserrat-ExtraBold',

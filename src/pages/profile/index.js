@@ -75,7 +75,7 @@ export default class Profile extends React.Component {
         <View
           style={{
             paddingHorizontal: 30,
-            paddingVertical : 10,
+            paddingVertical: 10,
             backgroundColor: 'white',
             borderRadius: 8,
             marginHorizontal: 17,
@@ -120,7 +120,8 @@ export default class Profile extends React.Component {
               <Text style={styles.menuItemText}>Settings</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
+          <TouchableRipple
+            onPress={() => this.props.navigation.navigate('Login')}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#FF6347" size={25} />
               <Text style={styles.menuItemText}>Logout</Text>
@@ -130,10 +131,7 @@ export default class Profile extends React.Component {
       </SafeAreaView>
     );
   }
-};
-
-
-
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor: 'white',
     borderRadius: 8,
-    marginTop : 20,
+    marginTop: 20,
     marginHorizontal: 17,
     width: wp('90%'),
     height: hp('30%'),
@@ -178,8 +176,3 @@ const styles = StyleSheet.create({
     lineHeight: 26,
   },
 });
-
-
-
-
-
