@@ -20,7 +20,7 @@ export default class Home extends React.Component {
             marginTop: 40,
             fontFamily: 'Montserrat-Bold',
           }}>
-          Hello Brad
+          Hello, Sandi Pratama
         </Text>
 
         <Text
@@ -29,7 +29,7 @@ export default class Home extends React.Component {
             fontSize: 18,
             marginTop: 13,
           }}>
-          Find your best jobs
+          Temukan Pekerjaan Terbaikmu !
         </Text>
 
         <View
@@ -48,6 +48,7 @@ export default class Home extends React.Component {
             style={{
               fontFamily: 'Montserrat-Medium',
               paddingHorizontal: 20,
+              width: wp(75),
             }}
           />
           <View
@@ -69,7 +70,7 @@ export default class Home extends React.Component {
             marginVertical: 20,
             fontSize: 15,
           }}>
-          Lowongan
+          Lowongan Tersedia
         </Text>
 
         <View

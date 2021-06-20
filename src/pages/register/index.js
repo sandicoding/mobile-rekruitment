@@ -34,7 +34,7 @@ class Register extends Component {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require('../../assets/image/logocv.png')}
+          source={require('../../assets/image/iconJob.png')}
         />
 
         <Text

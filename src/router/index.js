@@ -1,12 +1,13 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Login, Register, DetailJob, DetailStatus} from '../pages';
+import {Login, Register, DetailJob, DetailStatus, Splash} from '../pages';
 import Tabs from '../tabs/MyTabs';
 
 const Stack = createStackNavigator();
 const Router = () => {
   return (
     <Stack.Navigator
+      initialRouteName="Splash"
       screenOptions={{
         headerShown: false,
       }}>
@@ -14,6 +15,11 @@ const Router = () => {
         name="Login"
         options={{headerShown: false}}
         component={Login}
+      />
+      <Stack.Screen
+        name="Splash"
+        options={{headerShown: false}}
+        component={Splash}
       />
       <Stack.Screen
         name="Register"

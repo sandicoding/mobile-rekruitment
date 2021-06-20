@@ -15,8 +15,11 @@ const Tabs = () => {
         showLabel: false,
         style: {
           height: 80,
+          borderRadius : 10,
+          marginHorizontal : 20,
           backgroundColor: COLORS.primary,
           borderTopColor: 'transparent',
+          marginBottom : 20
         },
       }}>
       <Tab.Screen

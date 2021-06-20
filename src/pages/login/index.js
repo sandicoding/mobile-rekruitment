@@ -47,7 +47,7 @@ class Login extends Component {
       <View style={styles.container}>
         <Image
           style={styles.image}
-          source={require('../../assets/image/logocv.png')}
+          source={require('../../assets/image/iconJob.png')}
         />
         <Text
           style={{
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    marginBottom: 40,
+    marginBottom: 20,
     width: 100,
     height: 100,
   },

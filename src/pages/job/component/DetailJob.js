@@ -34,17 +34,17 @@ export default class DetailJob extends React.Component {
         <View
           style={{
             backgroundColor: '#f8f8f8',
-            height: '100%',
+            height: hp(110),
             paddingHorizontal: 20,
           }}>
           <ImageBackground
             source={require('../../../assets/image/dev2.png')}
-            style={{marginLeft: 50, width: '100%', height: 250}}>
+            style={{marginLeft: 50, width: wp(100), height: hp(30)}}>
             <View
               style={{
                 backgroundColor: '#000',
-                height: 30,
-                width: 40,
+                height: hp(5),
+                width: wp(10),
                 marginLeft: -50,
                 marginTop: 10,
                 borderRadius: 8,
@@ -65,6 +65,7 @@ export default class DetailJob extends React.Component {
               backgroundColor: '#FFF',
               padding: 10,
               borderRadius: 15,
+              marginTop : 20
             }}>
             <View
               style={{
@@ -161,7 +162,7 @@ export default class DetailJob extends React.Component {
                   fontFamily: 'Montserrat-ExtraBold',
                   color: '#B8B8B8',
                 }}>
-                Experiance
+                Pengalaman
               </Text>
               <Text
                 style={{
@@ -184,7 +185,7 @@ export default class DetailJob extends React.Component {
                   fontFamily: 'Montserrat-ExtraBold',
                   color: '#B8B8B8',
                 }}>
-                Type
+                Tipe
               </Text>
               <Text
                 style={{
@@ -207,7 +208,7 @@ export default class DetailJob extends React.Component {
                 fontSize: 20,
                 marginBottom: 10,
               }}>
-              Job Description
+              Diskripsi Pekerjaan
             </Text>
             <Text
               style={{
@@ -224,7 +225,7 @@ export default class DetailJob extends React.Component {
                 marginVertical: 20,
                 fontSize: 15,
               }}>
-              Upload cv
+              Unggah CV/Resume
             </Text>
             <TouchableOpacity
               style={{
@@ -234,35 +235,34 @@ export default class DetailJob extends React.Component {
               }}
               onPress={fileDocument}>
               <Icon name="upload" color="#FF6347" size={25} />
-              <Text>Upload</Text>
+              <Text>Unggah</Text>
             </TouchableOpacity>
           </View>
           <View
             style={{
-              width: '100%',
-              alignItems: 'flex-end',
+              width: wp(100),
+              alignItems: 'center',
+            
             }}>
             <View
               style={{
                 backgroundColor: '#000',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: 90,
-                height: 55,
+                width: wp(90),
+                height: hp(7),
                 marginTop: 30,
                 borderRadius: 15,
-                padding: 10,
+                marginLeft : -39,
+                marginBottom: 10,
               }}>
-              <Image
-                source={require('../../../assets/image/for.png')}
-                style={{width: 30}}
-              />
               <Text
                 style={{
                   color: '#FFF',
-                  fontFamily: 'Regular',
+                  fontFamily: 'Montserrat-Regular',
+                  fontSize: 20,
                 }}>
-                Apply
+                Lamar Lowongan
               </Text>
             </View>
           </View>

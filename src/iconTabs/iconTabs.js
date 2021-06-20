@@ -20,13 +20,15 @@ const IconTabs = ({focused, icon, label}) => {
           tintColor: focused ? COLORS.white : COLORS.secondary,
         }}
       />
-      <Text
-        style={{
-          color: focused ? COLORS.white : COLORS.secondary,
-          ...FONTS.h4,
-        }}>
-        {label}
-      </Text>
+      {focused && (
+        <Text
+          style={{
+            color: focused ? COLORS.white : COLORS.secondary,
+            ...FONTS.h4,
+          }}>
+          {label}
+        </Text>
+      )}
     </View>
   );
 };

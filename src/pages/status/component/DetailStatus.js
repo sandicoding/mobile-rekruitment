@@ -161,7 +161,7 @@ export default class DetailStatus extends React.Component {
                   fontFamily: 'Montserrat-ExtraBold',
                   color: '#B8B8B8',
                 }}>
-                Experiance
+                Pengalaman
               </Text>
               <Text
                 style={{
@@ -184,7 +184,7 @@ export default class DetailStatus extends React.Component {
                   fontFamily: 'Montserrat-ExtraBold',
                   color: '#B8B8B8',
                 }}>
-                Type
+                Tipe
               </Text>
               <Text
                 style={{
@@ -207,7 +207,7 @@ export default class DetailStatus extends React.Component {
                 fontSize: 20,
                 marginBottom: 10,
               }}>
-              Job Description
+              Diskripsi Lowongan
             </Text>
             <Text
               style={{
@@ -250,6 +250,7 @@ export default class DetailStatus extends React.Component {
               borderRadius: 15,
               padding: 20,
               marginTop: 20,
+              marginBottom : 50
             }}>
             <Text
               style={{
