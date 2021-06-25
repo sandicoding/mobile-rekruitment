@@ -1,3 +1,3 @@
 export const env = {
-  API_URL: 'http://rekruitment-karyawan.test/api',
+  API_URL: 'https://recruitment.yudicandra.web.id/api',
 };
