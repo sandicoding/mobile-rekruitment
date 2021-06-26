@@ -41,8 +41,25 @@ class Login extends Component {
   };
 
   render() {
-    const {isLogin} = this.props;
-    console.warn(isLogin);
+    const {isLogin, isLoading} = this.props;
+    console.warn(isLoading);
+
+    if (isLoading) {
+      return (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#fff',
+          }}>
+          <Image
+            source={require('../../assets/image/loader.gif')}
+            style={{width: wp(50), height: hp(50)}}
+          />
+        </View>
+      );
+    }
     return (
       <View style={styles.container}>
         <Image
@@ -94,7 +111,7 @@ class Login extends Component {
         </Text>
 
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('MainLayout')}
+          onPress={() => this.handelClickLogin()}
           style={styles.loginBtn}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
@@ -154,6 +171,7 @@ const styles = StyleSheet.create({
 
 const mapStateToprops = ({auth}) => ({
   isLogin: auth.isLoggin,
+  isLoading: auth.isLoading,
 });
 
 export default connect(mapStateToprops, {login})(Login);

@@ -14,13 +14,14 @@ const Tabs = () => {
       tabBarOptions={{
         keyboardHidesTabBar: true,
         showLabel: false,
+        keyboardHidesTabBar: true,
         style: {
           height: 80,
-          borderRadius : 10,
-          marginHorizontal : 20,
+          borderRadius: 10,
+          marginHorizontal: 20,
           backgroundColor: COLORS.primary,
           borderTopColor: 'transparent',
-          marginBottom : 20
+          marginBottom: 20,
         },
       }}>
       <Tab.Screen

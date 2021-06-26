@@ -15,6 +15,15 @@ import {COLORS, FONTS} from '../../constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nama: null,
+    };
+  }
+
+  componentDidMount() {}
+
   render() {
     return (
       <SafeAreaView style={styles.container}>

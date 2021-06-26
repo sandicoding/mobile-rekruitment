@@ -5,9 +5,17 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {listJobs} from '../../config/redux/action/JobAction';
+import {connect} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-export default class Home extends React.Component {
+class Home extends React.Component {
+  componentDidMount() {
+    this.props.listJobs();
+  }
+
   render() {
+    const {jobs} = this.props;
+
     return (
       <ScrollView
         style={{
@@ -73,78 +81,91 @@ export default class Home extends React.Component {
           Lowongan Tersedia
         </Text>
 
-        <View
-          style={{
-            backgroundColor: '#FFF',
-            marginTop: 10,
-            flexDirection: 'row',
-            borderRadius: 10,
-            height: 60,
-            alignItems: 'center',
-            paddingHorizontal: 20,
-          }}>
+        {jobs.jobs.map(item => (
           <View
+            key={item.id}
             style={{
-              backgroundColor: '#DFDFDF',
-              borderRadius: 5,
-              height: 40,
-              width: 40,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Image
-              source={require('../../assets/image/pentool.png')}
-              style={{width: wp(6), height: hp(6)}}
-            />
-          </View>
-
-          <View
-            style={{
+              backgroundColor: '#FFF',
+              marginTop: 10,
               flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: wp(70),
-              paddingHorizontal: 10,
+              borderRadius: 10,
+              height: 60,
+              alignItems: 'center',
+              paddingHorizontal: 20,
             }}>
             <View
               style={{
-                paddingHorizontal: 20,
+                backgroundColor: '#DFDFDF',
+                borderRadius: 5,
+                height: 40,
+                width: 40,
+                alignItems: 'center',
+                justifyContent: 'center',
               }}>
-              <Text
-                style={{
-                  fontFamily: 'Montserrat-ExtraBold',
-                  fontSize: 13,
-                }}>
-                Graphic Designer
-              </Text>
+              <Image
+                source={require('../../assets/image/pentool.png')}
+                style={{width: wp(6), height: hp(6)}}
+              />
+            </View>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: wp(70),
+                paddingHorizontal: 10,
+              }}>
               <View
                 style={{
-                  backgroundColor: '#DFDFDF',
-                  borderRadius: 5,
-                  width: 70,
-                  alignItems: 'center',
-                  marginVertical: 5,
+                  paddingHorizontal: 20,
                 }}>
                 <Text
-                  style={{fontFamily: 'Medium', color: '#000', opacity: 0.5}}>
-                  Part time
+                  style={{
+                    fontFamily: 'Montserrat-ExtraBold',
+                    fontSize: 13,
+                  }}>
+                  {item.name}
                 </Text>
+                <View
+                  style={{
+                    backgroundColor: '#DFDFDF',
+                    borderRadius: 5,
+                    width: 70,
+                    alignItems: 'center',
+                    marginVertical: 5,
+                  }}>
+                  <Text
+                    style={{fontFamily: 'Medium', color: '#000', opacity: 0.5}}>
+                    {item.type}
+                  </Text>
+                </View>
               </View>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('DetailJob', {
+                    idJob: item.id,
+                  })
+                }>
+                <Text
+                  style={{
+                    fontFamily: 'Montserrat-ExtraBold',
+                    fontSize: 18,
+                    marginTop: 10,
+                    color: '#125d98',
+                  }}>
+                  Detail
+                </Text>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('DetailJob')}>
-              <Text
-                style={{
-                  fontFamily: 'Montserrat-ExtraBold',
-                  fontSize: 18,
-                  marginTop: 10,
-                  color: '#125d98',
-                }}>
-                Detail
-              </Text>
-            </TouchableOpacity>
           </View>
-        </View>
+        ))}
       </ScrollView>
     );
   }
 }
+
+const mapStateToprops = ({jobsList}) => ({
+  jobs: jobsList,
+});
+
+export default connect(mapStateToprops, {listJobs})(Home);
