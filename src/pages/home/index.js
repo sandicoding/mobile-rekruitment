@@ -43,7 +43,7 @@ export default class Home extends React.Component {
             justifyContent: 'space-between',
           }}>
           <TextInput
-            placeholder="What are you looking for?"
+            placeholder="Cari disini"
             placeholderTextColor="#B0B0B0"
             style={{
               fontFamily: 'Montserrat-Medium',

@@ -15,8 +15,8 @@ const IconTabs = ({focused, icon, label}) => {
         source={icon}
         resizeMode="contain"
         style={{
-          width: 25,
-          height: 25,
+          width: wp(10),
+          height: hp(4),
           tintColor: focused ? COLORS.white : COLORS.secondary,
         }}
       />

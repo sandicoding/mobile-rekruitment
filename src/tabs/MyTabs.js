@@ -12,6 +12,7 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
+        keyboardHidesTabBar: true,
         showLabel: false,
         style: {
           height: 80,
