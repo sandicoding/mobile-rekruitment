@@ -15,6 +15,7 @@ class Home extends React.Component {
 
   render() {
     const {jobs} = this.props;
+    const job = jobs?.jobs;
 
     return (
       <ScrollView
@@ -81,7 +82,7 @@ class Home extends React.Component {
           Lowongan Tersedia
         </Text>
 
-        {jobs.jobs.map(item => (
+        {job?.map(item => (
           <View
             key={item.id}
             style={{
