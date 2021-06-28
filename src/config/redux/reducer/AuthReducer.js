@@ -38,6 +38,7 @@ const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
         ...state,
         message: payload,
         isLoggin: false,
+        isLoading: false,
       };
     case SET_LOGIN_ERROR_MESSAGE:
       return {

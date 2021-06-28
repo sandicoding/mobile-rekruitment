@@ -7,6 +7,7 @@ import {setHeaderToken} from '../../axios/setHeaderToken';
 
 import {
   IS_LOADING,
+  LOGIN_FAILED,
   LOGIN_SUCCESS,
   LOGOUT,
   SET_INITIAL_ROUTE_NAME,
@@ -39,15 +40,7 @@ export const login =
         }
       })
       .catch(err => {
-        console.warn(err);
-        // let result = err.response;
-        // if (result?.data) {
-        //   ToastAndroid.showWithGravity(
-        //     result.data.message,
-        //     ToastAndroid.SHORT,
-        //     ToastAndroid.BOTTOM,
-        //   );
-        // }
+        dispatch({type: LOGIN_FAILED});
       });
   };
 
