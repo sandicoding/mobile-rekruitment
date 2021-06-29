@@ -42,7 +42,6 @@ class Login extends Component {
 
   render() {
     const {isLogin, isLoading} = this.props;
-    console.warn(isLoading);
 
     if (isLoading) {
       return (
