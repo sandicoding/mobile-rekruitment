@@ -8,6 +8,7 @@ export const listJobs = () => async dispatch => {
 
     const {data} = await axios.get(`${env.API_URL}/job`);
 
+    
     dispatch({
       type: LOWONGAN_SUCCESS,
       payload: data.data,

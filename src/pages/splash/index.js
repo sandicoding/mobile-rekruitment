@@ -20,11 +20,13 @@ export default class Splash extends Component {
         tension: 10,
         friction: 2,
         duration: 1000,
+        useNativeDriver: false,
       }).start(),
 
       Animated.timing(logoText, {
         toValue: 1,
         duration: 1200,
+        useNativeDriver: false,
       }),
     ]).start(() => {
       this.setState({
@@ -33,7 +35,7 @@ export default class Splash extends Component {
     });
 
     setTimeout(() => {
-      this.props.navigation.navigate('Login');
+      this.props.navigation.navigate('Login')
     }, 3000);
   }
 

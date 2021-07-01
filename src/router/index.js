@@ -10,7 +10,7 @@ const Router = () => {
   const state = useSelector(state => state);
 
   const {auth} = state;
-  const [token, setToken] = useState(auth.accessToken);
+  const [token, setToken] = useState(auth?.accessToken);
   const getToken = async token => {
     if (!token) {
       const dataToken = await AsyncStorage.getItem('token');
@@ -23,52 +23,54 @@ const Router = () => {
   useEffect(() => {
     getToken(auth.accessToken);
     setHeaderToken(token);
-  }, [state]);
+  }, [state, token]);
 
-  console.warn(state);
-  if (!token) {
-    return (
-      <Stack.Navigator
-        initialRouteName="Splash"
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Stack.Screen
-          name="Login"
-          options={{headerShown: false}}
-          component={Login}
-        />
-        <Stack.Screen
-          name="Splash"
-          options={{headerShown: false}}
-          component={Splash}
-        />
-        <Stack.Screen
-          name="Register"
-          options={{headerShown: false}}
-          component={Register}
-        />
-      </Stack.Navigator>
-    );
-  }
+  // console.warn(state);
+  
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="MainLayout" component={Tabs} />
-      <Stack.Screen
-        name="DetailJob"
-        options={{headerShown: false}}
-        component={DetailJob}
-      />
-      <Stack.Screen
-        name="DetailStatus"
-        options={{headerShown: false}}
-        component={DetailStatus}
-      />
+      {state.auth.isLoggin === false ? (
+        <>
+          <Stack.Screen
+            name="Splash"
+            options={{headerShown: false}}
+            component={Splash}
+          />
+          <Stack.Screen
+            name="Login"
+            options={{headerShown: false}}
+            component={Login}
+          />
+
+          <Stack.Screen
+            name="Register"
+            options={{headerShown: false}}
+            component={Register}
+          />
+        </>
+      
+      ) : (
+        <>
+          <Stack.Screen name="MainLayout" component={Tabs} />
+          <Stack.Screen
+            name="DetailJob"
+            options={{headerShown: false}}
+            component={DetailJob}
+          />
+          <Stack.Screen
+            name="DetailStatus"
+            options={{headerShown: false}}
+            component={DetailStatus}
+          />
+        </>
+      )}
     </Stack.Navigator>
   );
+  
 };
 
 export default Router;

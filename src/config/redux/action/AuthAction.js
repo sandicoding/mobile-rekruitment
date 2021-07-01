@@ -18,10 +18,15 @@ import {
 
 export const login =
   (data, navigation = null) =>
-  dispatch => {
+  async dispatch => {
     dispatch({type: IS_LOADING});
-    axios
-      .post(`${env.API_URL}/login`, data)
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    await axios
+      .post(`${env.API_URL}/login`, data, config)
       .then(async result => {
         if (result.data) {
           let response = result.data;
@@ -36,7 +41,8 @@ export const login =
           dispatch({type: IS_LOADING});
           setHeaderToken(token);
 
-          return navigation.replace('MainLayout');
+          navigation.navigate("MainLayout")
+          
         }
       })
       .catch(err => {

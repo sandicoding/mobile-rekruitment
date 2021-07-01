@@ -21,7 +21,7 @@ const INITIAL_STATE = {
   initialRouteName: null,
 };
 
-const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
+export const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
   switch (type) {
     case LOGIN_SUCCESS:
       return {
@@ -81,4 +81,18 @@ const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
   }
 };
 
-export default AuthReducer;
+
+export const userRegisterReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_REGISTER_REQUEST:
+      return {loading: true};
+    case USER_REGISTER_SUCCESS:
+      return {loading: false, userInfo: action.payload};
+    case USER_REGISTER_FAIL:
+      return {loading: false, error: action.payload};
+    default:
+      return state;
+  }
+};
+
+

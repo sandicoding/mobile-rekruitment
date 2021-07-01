@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {View, Text, Image, TextInput} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {
@@ -6,17 +6,23 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {listJobs} from '../../config/redux/action/JobAction';
-import {connect} from 'react-redux';
+import {useDispatch , useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-class Home extends React.Component {
-  componentDidMount() {
-    this.props.listJobs();
-  }
+import { List } from '../../Loader'
+const Home = () =>  {
 
-  render() {
-    const {jobs} = this.props;
-    const job = jobs?.jobs;
+  const dispatch = useDispatch();
 
+  const jobList = useSelector(state => state.jobsList);
+  
+  const { loading, error, jobs} = jobList;
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(listJobs());
+    }, 1000) 
+  }, [dispatch]);
+
+  console.warn(jobs)
     return (
       <ScrollView
         style={{
@@ -40,7 +46,7 @@ class Home extends React.Component {
           }}>
           Temukan Pekerjaan Terbaikmu !
         </Text>
-
+          
         <View
           style={{
             backgroundColor: '#FFF',
@@ -81,8 +87,12 @@ class Home extends React.Component {
           }}>
           Lowongan Tersedia
         </Text>
-
-        {job?.map(item => (
+        {loading ? (
+            <List 
+              
+            />
+          ) : (
+            jobs?.map(item => (
           <View
             key={item.id}
             style={{
@@ -159,14 +169,20 @@ class Home extends React.Component {
               </TouchableOpacity>
             </View>
           </View>
-        ))}
+        ))
+          )}
+
+        
       </ScrollView>
     );
-  }
+  
 }
 
-const mapStateToprops = ({jobsList}) => ({
-  jobs: jobsList,
-});
+// const mapStateToprops = ({jobsList}) => ({
+//   jobs: jobsList,
+//   loading : jobsList.loading
+// });
 
-export default connect(mapStateToprops, {listJobs})(Home);
+// export default connect(mapStateToprops, {listJobs})(Home);
+
+export default Home;
