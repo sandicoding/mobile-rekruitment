@@ -41,8 +41,9 @@ class Login extends Component {
   };
 
   render() {
-    const {isLogin, isLoading} = this.props;
+    const {isLogin, isLoading, message} = this.props;
 
+    console.warn(message)
     if (isLoading) {
       return (
         <View
@@ -86,7 +87,15 @@ class Login extends Component {
             onChangeText={e => this.handleChangeText('email', e)}
           />
         </View>
-
+        {message?.email && (
+          <Text
+            style={{
+              color: 'red',
+              marginTop: 6,
+            }}>
+            Email pastikan terisi dengan benar!
+          </Text>
+        )}
         <View style={styles.inputView}>
           <TextInput
             placeholder="Password"
@@ -100,14 +109,23 @@ class Login extends Component {
             onChangeText={e => this.handleChangeText('password', e)}
           />
         </View>
+        {message?.password && (
+          <Text
+            style={{
+              color: 'red',
+              marginTop: 6,
+            }}>
+            password pastikan terisi dengan benar!
+          </Text>
+        )}
 
-        <Text style={styles.forgot_button}>
-          anda belum punya akun ?{' '}
+        <View style={styles.viewInfo}>
+          <Text style={styles.forgot_button}>anda belum punya akun ? </Text>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('Register')}>
             <Text style={{color: 'blue'}}> Register </Text>
           </TouchableOpacity>
-        </Text>
+        </View>
 
         <TouchableOpacity
           onPress={() => this.handelClickLogin()}
@@ -150,8 +168,14 @@ const styles = StyleSheet.create({
   },
 
   forgot_button: {
-    height: 30,
-    marginBottom: 30,
+    
+    
+  },
+  viewInfo: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection : 'row',
+    marginTop : 10
   },
 
   loginBtn: {
@@ -170,6 +194,7 @@ const styles = StyleSheet.create({
 
 const mapStateToprops = ({auth}) => ({
   isLogin: auth.isLoggin,
+  message : auth.message,
   isLoading: auth.isLoading,
 });
 

@@ -1,5 +1,13 @@
-import React from 'react';
-import {View, ImageBackground, Image, Text, ScrollView} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  ImageBackground,
+  Image,
+  Text,
+  ScrollView,
+  useWindowDimensions,
+  Box
+} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DocumentPicker from 'react-native-document-picker';
@@ -7,14 +15,52 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {Platform} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux'
+import {listJobsDetails} from '../../../config/redux/action/JobAction'; 
+import {applyJob} from '../../../config/redux/action/MyApplyAction'; 
+import {List} from '../../../Loader';
+import RenderHtml from 'react-native-render-html';
+import {Root, Toast} from 'popup-ui';
+import {useFocusEffect, useIsFocused} from '@react-navigation/native';
+import {format} from 'date-fns';
 
-export default class DetailJob extends React.Component {
-  render() {
+
+
+const DetailJob = (props) =>  {
+    
+    const {idJob} = props.route.params;
+    const { navigation } = props
+    const [ uri , setUri ] = useState()
+    const [date, setDate] = useState();
+    const [ fileName , setFileName ] = useState()
+    const dispatch = useDispatch()
+
+    const jobDetail = useSelector(state => state.jobsDetails );
+    const applys = useSelector(state => state.apply);
+    const {errorApply , loadingApply, apply} = applys;
+    const { loading , error, jobsDetail } = jobDetail
+
+      
+
+    useEffect(() => {
+        dispatch(listJobsDetails(idJob))
+    },[dispatch, idJob])
+
+
+    
     const fileDocument = async () => {
       try {
         const res = await DocumentPicker.pick({
           type: [DocumentPicker.types.images],
+          type: [DocumentPicker.types.pdf],
         });
+
+        if(!res.cancelled) {
+          setUri({res});
+          setFileName(res.name);
+        }
+        
         console.log(
           res.uri,
           res.type, // mime type
@@ -29,94 +75,114 @@ export default class DetailJob extends React.Component {
         }
       }
     };
+
+
+    const submitHandler = () => {
+      
+      const data = new FormData()
+
+      data.append('file',{
+        name : uri.res.name,
+        uri: uri.res.uri,
+        type : uri.res.type
+      });
+
+      console.warn(data)
+      dispatch(applyJob(data, idJob, navigation));
+      Toast.show({
+        title: 'Pengajuan Berhasil',
+        text: 'Pengajuan Kamu berhasil ',
+        color: '#2ecc71',
+      });
+
+      setFileName(null)
+
+    }
+    
+    const { created_at} = jobsDetail
+    
+    let tanggal = created_at?.split("T")[0]
+    
+
+    
     return (
-      <ScrollView vertical showsHorizontalScrollIndicator={false}>
-        <View
-          style={{
-            backgroundColor: '#f8f8f8',
-            height: hp(110),
-            paddingHorizontal: 20,
-          }}>
-          <ImageBackground
-            source={require('../../../assets/image/dev2.png')}
-            style={{marginLeft: 50, width: wp(100), height: hp(30)}}>
-            <View
-              style={{
-                backgroundColor: '#000',
-                height: hp(5),
-                width: wp(10),
-                marginLeft: -50,
-                marginTop: 10,
-                borderRadius: 8,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('MainLayout')}>
-                <Image
-                  source={require('../../../assets/image/back.png')}
-                  style={{width: 25, height: 10}}
-                />
-              </TouchableOpacity>
-            </View>
-          </ImageBackground>
+      <Root>
+        <ScrollView vertical showsHorizontalScrollIndicator={false}>
           <View
             style={{
-              backgroundColor: '#FFF',
-              padding: 10,
-              borderRadius: 15,
-              marginTop : 20
+              backgroundColor: '#f8f8f8',
+              height: hp(110),
+              paddingHorizontal: 20,
             }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}>
-              <View>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontFamily: 'ExtraBold',
-                  }}>
-                  Software Developer
-                </Text>
-
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Text
-                    style={{
-                      fontFamily: 'ExtraBold',
-                      color: '#000',
-                      opacity: 0.6,
-                      fontSize: 14,
-                    }}>
-                    Parallel
-                  </Text>
-                </View>
+            <ImageBackground
+              source={require('../../../assets/image/dev2.png')}
+              style={{marginLeft: 50, width: wp(100), height: hp(30)}}>
+              <View
+                style={{
+                  backgroundColor: '#000',
+                  height: hp(5),
+                  width: wp(10),
+                  marginLeft: -50,
+                  marginTop: 10,
+                  borderRadius: 8,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <TouchableOpacity
+                  onPress={() => props.navigation.navigate('MainLayout')}>
+                  <Image
+                    source={require('../../../assets/image/back.png')}
+                    style={{width: 25, height: 10}}
+                  />
+                </TouchableOpacity>
               </View>
-              {/* <View
-                            style={{
-                            backgroundColor: '#DFDFDF',
-                            height: 32,
-                            width: 32,
-                            borderRadius: 5,
-                            marginLeft: 50,
-                            marginTop: 5,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            }}>
-                            <Image
-                            source={require('../../../assets/image/favourite.png')}
-                            style={{opacity: 0.5, width: 24, height: 24}}
-                            />
-                        </View> */}
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                paddingTop: 20,
-                alignItems: 'center',
-              }}>
-              {/* <Image
+            </ImageBackground>
+            {loading ? (
+              <List />
+            ) : (
+              <View>
+                <View
+                  style={{
+                    backgroundColor: '#FFF',
+                    padding: 10,
+                    borderRadius: 15,
+                    marginTop: 20,
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }}>
+                    <View>
+                      <Text
+                        style={{
+                          fontSize: 18,
+                          fontFamily: 'ExtraBold',
+                        }}>
+                        {jobsDetail?.name}
+                      </Text>
+
+                      <View
+                        style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text
+                          style={{
+                            fontFamily: 'ExtraBold',
+                            color: '#000',
+                            opacity: 0.6,
+                            fontSize: 14,
+                          }}>
+                          Tanggal Open : {tanggal}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      paddingTop: 20,
+                      alignItems: 'center',
+                    }}>
+                    {/* <Image
                             source={require('../../../assets/image/1.jpg')}
                             style={{width: 30, height: 30}}
                         />
@@ -132,7 +198,7 @@ export default class DetailJob extends React.Component {
                             source={require('../../../assets/image/4.jpg')}
                             style={{width: 30, height: 30}}
                         /> */}
-              {/* <Text
+                    {/* <Text
                             style={{
                             fontFamily: 'Bold',
                             color: '#B8B8B8',
@@ -140,134 +206,158 @@ export default class DetailJob extends React.Component {
                             }}>
                             4 Friends Work Here
                         </Text> */}
-            </View>
-          </View>
+                  </View>
+                </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 20,
-              justifyContent: 'space-between',
-            }}>
-            <View
-              style={{
-                backgroundColor: '#FFF',
-                paddingVertical: 10,
-                paddingHorizontal: 10,
-                borderRadius: 8,
-                width: wp(43),
-              }}>
-              <Text
-                style={{
-                  fontFamily: 'Montserrat-ExtraBold',
-                  color: '#B8B8B8',
-                }}>
-                Pengalaman
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'Montserrat-ExtraBold',
-                }}>
-                Minimum 2 year
-              </Text>
-            </View>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    marginTop: 20,
+                    justifyContent: 'space-between',
+                  }}>
+                  <View
+                    style={{
+                      backgroundColor: '#FFF',
+                      paddingVertical: 10,
+                      paddingHorizontal: 10,
+                      borderRadius: 8,
+                      width: wp(43),
+                    }}>
+                    <Text
+                      style={{
+                        fontFamily: 'Montserrat-ExtraBold',
+                        color: '#B8B8B8',
+                      }}>
+                      Pengalaman
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: 'Montserrat-ExtraBold',
+                      }}>
+                      {jobsDetail?.pengalaman}
+                    </Text>
+                  </View>
+
+                  <View
+                    style={{
+                      backgroundColor: '#FFF',
+                      paddingVertical: 10,
+                      paddingHorizontal: 10,
+                      borderRadius: 8,
+                      width: wp(43),
+                    }}>
+                    <Text
+                      style={{
+                        fontFamily: 'Montserrat-ExtraBold',
+                        color: '#B8B8B8',
+                      }}>
+                      Tipe
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: 'Montserrat-ExtraBold',
+                      }}>
+                      {jobsDetail?.type}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    backgroundColor: '#FFF',
+                    borderRadius: 15,
+                    padding: 20,
+                    marginTop: 20,
+                    width: wp(90),
+                  }}>
+                  <Text
+                    style={{
+                      fontFamily: 'Montserrat-ExtraBold',
+                      fontSize: 20,
+                      marginBottom: 10,
+                    }}>
+                    Diskripsi Pekerjaan
+                  </Text>
+
+                  <Text
+                    style={{
+                      fontFamily: 'Montserrat-SemiBold',
+                      color: '#B2B2B2',
+                    }}>
+                    {jobsDetail?.description}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Montserrat-ExtraBold',
+                      marginVertical: 20,
+                      fontSize: 15,
+                    }}>
+                    Unggah CV/Resume, format PDF
+                  </Text>
+                  <TouchableOpacity
+                    style={{
+                      fontFamily: 'Montserrat-Bold',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    onPress={fileDocument}>
+                    {fileName ? (
+                      <View
+                        style={{
+                          fontFamily: 'Montserrat-Bold',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}>
+                        <Image
+                          source={require('../../../assets/image/pdf-icon.png')}
+                          style={{width: 30, height: 30}}
+                        />
+                        <Text>{fileName}</Text>
+                      </View>
+                    ) : (
+                      <>
+                        <Icon name="upload" color="#FF6347" size={25} />
+                        <Text>Unggah</Text>
+                      </>
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )}
 
             <View
               style={{
-                backgroundColor: '#FFF',
-                paddingVertical: 10,
-                paddingHorizontal: 10,
-                borderRadius: 8,
-                width: wp(43),
+                width: wp(100),
+                alignItems: 'center',
               }}>
-              <Text
-                style={{
-                  fontFamily: 'Montserrat-ExtraBold',
-                  color: '#B8B8B8',
-                }}>
-                Tipe
-              </Text>
-              <Text
-                style={{
-                  fontFamily: 'Montserrat-ExtraBold',
-                }}>
-                Full Time
-              </Text>
+              <TouchableOpacity onPress={() => submitHandler()}>
+                <View
+                  style={{
+                    backgroundColor: '#000',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: wp(90),
+                    height: hp(7),
+                    marginTop: 30,
+                    borderRadius: 15,
+                    marginLeft: -39,
+                    marginBottom: 10,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#FFF',
+                      fontFamily: 'Montserrat-Regular',
+                      fontSize: 20,
+                    }}>
+                    Lamar Lowongan
+                  </Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
-          <View
-            style={{
-              backgroundColor: '#FFF',
-              borderRadius: 15,
-              padding: 20,
-              marginTop: 20,
-            }}>
-            <Text
-              style={{
-                fontFamily: 'Montserrat-ExtraBold',
-                fontSize: 20,
-                marginBottom: 10,
-              }}>
-              Diskripsi Pekerjaan
-            </Text>
-            <Text
-              style={{
-                fontFamily: 'Montserrat-SemiBold',
-                color: '#B2B2B2',
-              }}>
-              Amet minim mollit non deserunt ulliamco est sit aliqua dolor do
-              amet sit. Vellit officoa consequat duis enim velit mollit.
-              Extertation venoima consequat sunt notserud amet.
-            </Text>
-            <Text
-              style={{
-                fontFamily: 'Montserrat-ExtraBold',
-                marginVertical: 20,
-                fontSize: 15,
-              }}>
-              Unggah CV/Resume
-            </Text>
-            <TouchableOpacity
-              style={{
-                fontFamily: 'Montserrat-Bold',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              onPress={fileDocument}>
-              <Icon name="upload" color="#FF6347" size={25} />
-              <Text>Unggah</Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              width: wp(100),
-              alignItems: 'center',
-            
-            }}>
-            <View
-              style={{
-                backgroundColor: '#000',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: wp(90),
-                height: hp(7),
-                marginTop: 30,
-                borderRadius: 15,
-                marginLeft : -39,
-                marginBottom: 10,
-              }}>
-              <Text
-                style={{
-                  color: '#FFF',
-                  fontFamily: 'Montserrat-Regular',
-                  fontSize: 20,
-                }}>
-                Lamar Lowongan
-              </Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </Root>
     );
-  }
+  
 }
+
+export default DetailJob

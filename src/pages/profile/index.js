@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet} from 'react-native';
+import { useSelector } from 'react-redux';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -14,17 +15,14 @@ import {
 import {COLORS, FONTS} from '../../constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default class Profile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      nama: null,
-    };
-  }
+const Profile = (props) => {
+const state = useSelector(state => state)
 
-  componentDidMount() {}
+const { auth } = state
 
-  render() {
+const { name, email, no_telpon, alamat } = auth?.dataUser
+
+ 
     return (
       <SafeAreaView style={styles.container}>
         <Text
@@ -67,7 +65,7 @@ export default class Profile extends React.Component {
                     marginBottom: 5,
                   },
                 ]}>
-                SANDI PRATAMA
+                {name}
               </Title>
               <Caption
                 style={{
@@ -98,7 +96,7 @@ export default class Profile extends React.Component {
             }}>
             <Icon name="map-marker-radius" color="#777777" size={20} />
             <Text style={{color: '#777777', marginLeft: 20}}>
-              Tangerang Selatan
+              {alamat}
             </Text>
           </View>
           <View
@@ -108,7 +106,7 @@ export default class Profile extends React.Component {
             }}>
             <Icon name="phone" color="#777777" size={20} />
             <Text style={{color: '#777777', marginLeft: 20}}>
-              +628551849003
+              {no_telpon}
             </Text>
           </View>
           <View
@@ -118,7 +116,7 @@ export default class Profile extends React.Component {
             }}>
             <Icon name="email" color="#777777" size={20} />
             <Text style={{color: '#777777', marginLeft: 20}}>
-              Sandi@email.com
+              {email}
             </Text>
           </View>
         </View>
@@ -130,7 +128,7 @@ export default class Profile extends React.Component {
             </View>
           </TouchableRipple>
           <TouchableRipple
-            onPress={() => this.props.navigation.navigate('Login')}>
+            onPress={() => props.navigation.navigate('Login')}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#FF6347" size={25} />
               <Text style={styles.menuItemText}>Logout</Text>
@@ -139,7 +137,7 @@ export default class Profile extends React.Component {
         </View>
       </SafeAreaView>
     );
-  }
+  
 }
 
 const styles = StyleSheet.create({
@@ -185,3 +183,5 @@ const styles = StyleSheet.create({
     lineHeight: 26,
   },
 });
+
+export default Profile

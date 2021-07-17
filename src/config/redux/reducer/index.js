@@ -1,12 +1,16 @@
 import {combineReducers} from 'redux';
-import {AuthReducer} from './AuthReducer';
-import {JobListReducer} from './JobReducer';
-import {MyApplyListReducer} from './MyApplyReducer';
+import {AuthReducer, userRegisterReducer} from './AuthReducer';
+import {JobListReducer, listJobDetails} from './JobReducer';
+import {MyApplyListReducer, DetailMyApplyListReducer , ApplyJobs} from './MyApplyReducer';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
+  register: userRegisterReducer,
   jobsList: JobListReducer,
+  jobsDetails: listJobDetails,
+  apply : ApplyJobs,
   applyList: MyApplyListReducer,
+  DetailApply: DetailMyApplyListReducer,
 });
 
 export default rootReducer;

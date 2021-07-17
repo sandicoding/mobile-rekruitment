@@ -14,6 +14,9 @@ import {
   SET_IS_LOGIN,
   SET_TOKEN,
   SET_USER,
+  USER_REGISTER_FAIL,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
 } from '../../const';
 
 export const login =
@@ -46,9 +49,52 @@ export const login =
         }
       })
       .catch(err => {
-        dispatch({type: LOGIN_FAILED});
+        dispatch({
+          type: LOGIN_FAILED,
+          payload: err.response.data.message,
+        });
       });
   };
+
+
+export const registerAction = (dataRegister, navigation) => async (dispatch) => {
+
+  try {
+    
+    dispatch({ type : USER_REGISTER_REQUEST})
+
+    
+    const {data} = await axios.post(`${env.API_URL}/register`, dataRegister);
+
+    dispatch({
+      type : USER_REGISTER_SUCCESS,
+      payload : data.data
+    })
+
+    // let response = data.data;
+    // let token = response.data.access_token;
+    // let user = response.data.user;
+
+    // await AsyncStorage.setItem('access_token', token);
+
+    // dispatch({type: SET_USER, payload: user});
+    // dispatch({type: SET_TOKEN, payload: token});
+    // dispatch({type: SET_IS_LOGIN});
+    // setHeaderToken(token);
+
+    navigation.navigate('Login');
+
+
+
+
+
+  } catch (error) {
+    dispatch({
+      type : USER_REGISTER_FAIL,
+      payload : error.response.data.message
+    })
+  }
+}  
 
 export const logout = navigation => async dispatch => {
   await AsyncStorage.removeItem('access_token');

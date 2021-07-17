@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState  } from 'react';
+import {useFocusEffect, useIsFocused} from '@react-navigation/native';
 import {View, Text, Image, TextInput} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {
@@ -9,20 +10,39 @@ import {listJobs} from '../../config/redux/action/JobAction';
 import {useDispatch , useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { List } from '../../Loader'
-const Home = () =>  {
+const Home = (props) =>  {
+  const state = useSelector(state => state);
 
+  const {auth} = state;
+
+  const {name} = auth?.dataUser;
+  const [ data , setData ] = useState([])
   const dispatch = useDispatch();
 
   const jobList = useSelector(state => state.jobsList);
   
   const { loading, error, jobs} = jobList;
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(listJobs());
-    }, 1000) 
-  }, [dispatch]);
 
-  console.warn(jobs)
+  
+
+  // useFocusEffect(
+    
+  //   React.useCallback(() => {
+  //     dispatch(listJobs());
+      
+
+  //   },[dispatch,listJobs])   
+  // );
+  const isFocused = useIsFocused()
+  useEffect(() => {
+    if(isFocused){
+    dispatch(listJobs());
+    }
+  },[dispatch,isFocused])
+
+  
+
+  
     return (
       <ScrollView
         style={{
@@ -35,7 +55,7 @@ const Home = () =>  {
             marginTop: 40,
             fontFamily: 'Montserrat-Bold',
           }}>
-          Hello, Sandi Pratama
+          Hello, {name}
         </Text>
 
         <Text
@@ -153,7 +173,7 @@ const Home = () =>  {
               </View>
               <TouchableOpacity
                 onPress={() =>
-                  this.props.navigation.navigate('DetailJob', {
+                  props.navigation.navigate('DetailJob', {
                     idJob: item.id,
                   })
                 }>

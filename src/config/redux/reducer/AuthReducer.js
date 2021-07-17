@@ -9,6 +9,9 @@ import {
   SET_INITIAL_ROUTE_NAME,
   SET_IS_LOGIN,
   IS_LOADING,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
 } from '../../const';
 
 const INITIAL_STATE = {
@@ -82,7 +85,7 @@ export const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
 };
 
 
-export const userRegisterReducer = (state = {}, action) => {
+export const userRegisterReducer = (state = { userInfo : [] }, action) => {
   switch (action.type) {
     case USER_REGISTER_REQUEST:
       return {loading: true};

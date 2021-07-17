@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import {Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {COLORS} from '../../constants';
 import {
@@ -11,18 +12,19 @@ import {useDispatch , useSelector} from 'react-redux';
 import {List} from '../../Loader';
 
 
-const  Status = () => {
+const  Status = (props) => {
 
 const dispatch = useDispatch()
 
 const applyList = useSelector(state => state.applyList);
 
 const {loading, error, applys} = applyList;
-useEffect(() => {
-  dispatch(listMyApply());
-}, [dispatch]);
+useFocusEffect(
+  React.useCallback(() => {
+  dispatch(listMyApply())
+}, [dispatch])
+)
 
-console.warn(applys);
   
   
     return (
@@ -52,7 +54,7 @@ console.warn(applys);
           {loading ? (
             <List />
           ) : (
-            applys.map(item => (
+            applys?.map(item => (
               <View
                 key={item.id}
                 style={{
@@ -95,7 +97,7 @@ console.warn(applys);
                         fontFamily: 'Montserrat-ExtraBold',
                         fontSize: 13,
                       }}>
-                      Graphic Designer
+                      {item.job.name}
                     </Text>
                     <View
                       style={{
@@ -122,7 +124,9 @@ console.warn(applys);
                   </View>
                   <TouchableOpacity
                     onPress={() =>
-                      this.props.navigation.navigate('DetailStatus')
+                      props.navigation.navigate('DetailStatus', {
+                        idJob : item.id
+                      })
                     }>
                     <Text
                       style={{
