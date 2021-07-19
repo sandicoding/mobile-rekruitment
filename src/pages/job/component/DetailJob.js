@@ -82,20 +82,29 @@ const DetailJob = (props) =>  {
       const data = new FormData()
 
       data.append('file',{
-        name : uri.res.name,
-        uri: uri.res.uri,
-        type : uri.res.type
+        name : uri?.res.name,
+        uri: uri?.res.uri,
+        type : uri?.res.type
       });
 
-      console.warn(data)
-      dispatch(applyJob(data, idJob, navigation));
-      Toast.show({
-        title: 'Pengajuan Berhasil',
-        text: 'Pengajuan Kamu berhasil ',
-        color: '#2ecc71',
-      });
+      if(fileName){
+        console.warn(data);
+        dispatch(applyJob(data, idJob, navigation));
+        Toast.show({
+          title: 'Pengajuan Berhasil',
+          text: 'Pengajuan Kamu berhasil ',
+          color: '#2ecc71',
+        });
 
-      setFileName(null)
+        setFileName(null);
+      }else {
+        Toast.show({
+          title: 'Berkas Belum diunggah',
+          color: '#FF3D68',
+          callback: () => Popup.hide(),
+        });
+      }
+      
 
     }
     

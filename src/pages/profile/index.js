@@ -72,8 +72,9 @@ const { name, email, no_telpon, alamat } = auth?.dataUser
                   fontSize: 14,
                   lineHeight: 14,
                   fontWeight: '500',
+                  color: '#50CB93',
                 }}>
-                Programmer
+                Akun Active
               </Caption>
             </View>
           </View>
@@ -95,9 +96,7 @@ const { name, email, no_telpon, alamat } = auth?.dataUser
               marginBottom: 10,
             }}>
             <Icon name="map-marker-radius" color="#777777" size={20} />
-            <Text style={{color: '#777777', marginLeft: 20}}>
-              {alamat}
-            </Text>
+            <Text style={{color: '#777777', marginLeft: 20}}>{alamat}</Text>
           </View>
           <View
             style={{
@@ -105,9 +104,7 @@ const { name, email, no_telpon, alamat } = auth?.dataUser
               marginBottom: 10,
             }}>
             <Icon name="phone" color="#777777" size={20} />
-            <Text style={{color: '#777777', marginLeft: 20}}>
-              {no_telpon}
-            </Text>
+            <Text style={{color: '#777777', marginLeft: 20}}>{no_telpon}</Text>
           </View>
           <View
             style={{
@@ -115,9 +112,7 @@ const { name, email, no_telpon, alamat } = auth?.dataUser
               marginBottom: 10,
             }}>
             <Icon name="email" color="#777777" size={20} />
-            <Text style={{color: '#777777', marginLeft: 20}}>
-              {email}
-            </Text>
+            <Text style={{color: '#777777', marginLeft: 20}}>{email}</Text>
           </View>
         </View>
         <View style={styles.menuWrapper}>
@@ -127,8 +122,7 @@ const { name, email, no_telpon, alamat } = auth?.dataUser
               <Text style={styles.menuItemText}>Settings</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple
-            onPress={() => props.navigation.navigate('Login')}>
+          <TouchableRipple onPress={() => props.navigation.navigate('Login')}>
             <View style={styles.menuItem}>
               <Icon name="logout" color="#FF6347" size={25} />
               <Text style={styles.menuItemText}>Logout</Text>
