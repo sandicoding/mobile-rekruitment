@@ -25,19 +25,26 @@ const { name, email, no_telpon, alamat } = auth?.dataUser
  
     return (
       <SafeAreaView style={styles.container}>
-        <Text
+        <View
           style={{
-            fontFamily: 'Montserrat-ExtraBold',
-            fontSize: 18,
-            marginTop: 13,
-            marginLeft: 150,
+            justifyContent: 'center',
             backgroundColor: 'black',
-            color: COLORS.white,
-            width: wp(35),
+            width: wp(39),
             padding: 10,
+            alignItems : 'center',
+            marginLeft : 100,
+            marginTop  : 20
           }}>
-          User Profile
-        </Text>
+          <Text
+            style={{
+              fontFamily: 'Montserrat-ExtraBold',
+              fontSize: 18,
+              marginTop: 13,
+              color: COLORS.white,
+            }}>
+            User Profile
+          </Text>
+        </View>
         <View
           style={{
             paddingHorizontal: 30,

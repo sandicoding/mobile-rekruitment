@@ -227,7 +227,7 @@ const DetailStatus = (props) =>  {
                   width: wp('100%'),
                 }}>
                 {/* <RenderHtml contentWidth={width} source={source} /> */}
-                {apply?.job.description}
+                {apply?.job?.description}
               </Text>
             </View>
             <View
