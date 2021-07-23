@@ -209,7 +209,7 @@ const DetailStatus = (props) =>  {
                 borderRadius: 15,
                 padding: 20,
                 marginTop: 20,
-                width: wp(80),
+                width: wp(90),
                 overflow: 'hidden',
               }}>
               <Text
@@ -224,7 +224,7 @@ const DetailStatus = (props) =>  {
                 style={{
                   fontFamily: 'Montserrat-SemiBold',
                   color: '#B2B2B2',
-                  width: wp('100%'),
+                  width: wp(83),
                 }}>
                 {/* <RenderHtml contentWidth={width} source={source} /> */}
                 {apply?.job?.description}

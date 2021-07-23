@@ -14,6 +14,9 @@ import {
   SET_IS_LOGIN,
   SET_TOKEN,
   SET_USER,
+  UPDATE_AVATAR_FAILED,
+  UPDATE_AVATAR_REQUEST,
+  UPDATE_AVATAR_SUCCESS,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -34,16 +37,21 @@ export const login =
         if (result.data) {
           let response = result.data;
           let token = response.data.access_token;
-          let user = response.data.user;
+          let user = response.data?.user;
 
+          
           await AsyncStorage.setItem('access_token', token);
+          await AsyncStorage.setItem('user', JSON.stringify(user));
+          
+          
 
           dispatch({type: SET_USER, payload: user});
           dispatch({type: SET_TOKEN, payload: token});
           dispatch({type: SET_IS_LOGIN});
           dispatch({type: IS_LOADING});
           setHeaderToken(token);
-
+          
+          
           navigation.navigate("MainLayout")
           
         }
@@ -94,9 +102,37 @@ export const registerAction = (dataRegister, navigation) => async (dispatch) => 
       payload : error.response.data.message
     })
   }
-}  
+}
 
-export const logout = navigation => async dispatch => {
+
+export const UpdatePhoto = (file) => async dispatch => {
+  try {
+    dispatch({type: UPDATE_AVATAR_REQUEST});
+
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    const {data} = await axios.post(`${env.API_URL}/user/photo`, file, config);
+
+    dispatch({
+      type: UPDATE_AVATAR_SUCCESS,
+      payload: data.data,
+    });
+  } catch (error) {
+    console.log('erorrr');
+    dispatch({
+      type: UPDATE_AVATAR_FAILED,
+      payload: error.response.data.message,
+    });
+  }
+};  
+
+
+
+export const logout = () => async dispatch => {
   await AsyncStorage.removeItem('access_token');
   await AsyncStorage.removeItem('user');
   await AsyncStorage.removeItem('initialRouteName');
@@ -104,8 +140,7 @@ export const logout = navigation => async dispatch => {
   dispatch({type: SET_USER, payload: {}});
   dispatch({type: SET_TOKEN, payload: null});
   dispatch({type: LOGOUT, payload: false});
-  dispatch({type: SET_IS_LOGIN});
-  dispatch({type: SET_INITIAL_ROUTE_NAME, payload: 'Login'});
+  
 
-  navigation.replace('Login');
+  
 };

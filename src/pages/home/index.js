@@ -10,18 +10,30 @@ import {listJobs} from '../../config/redux/action/JobAction';
 import {useDispatch , useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { List } from '../../Loader'
+import SearchInput, {createFilter} from 'react-native-search-filter';
+const KEYS_TO_FILTERS = ['name', 'subject']
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 const Home = (props) =>  {
   const state = useSelector(state => state);
+  const [ cariNama, setCariNama ] = useState('') 
+  const [ name, setName ] = useState()
 
   const {auth} = state;
 
-  const {name} = auth?.dataUser;
+  // const {name} = auth?.dataUser;
   const [ data , setData ] = useState([])
   const dispatch = useDispatch();
 
   const jobList = useSelector(state => state.jobsList);
   
   const { loading, error, jobs} = jobList;
+
+  
+  const cariUpdate = (data) =>  {
+    setCariNama(data)
+  }
 
   
 
@@ -34,13 +46,33 @@ const Home = (props) =>  {
   //   },[dispatch,listJobs])   
   // );
   const isFocused = useIsFocused()
-  useEffect(() => {
-    if(isFocused){
-    dispatch(listJobs());
-    }
+  
+  useEffect(  () => {
+    const unsubscribe = props.navigation.addListener('focus', () => {
+      // Prevent default behavior
+      
+
+      dispatch(listJobs());
+      const check = async () => {
+        const user = await AsyncStorage.getItem('user');
+        const data = JSON.parse(user);
+
+        setName(data.name);
+      };
+
+      check();
+    });
+    
+    return unsubscribe
+    // if(isFocused){
+    // dispatch(listJobs());
+    // }
+
+    
   },[dispatch,isFocused])
 
-  
+
+  const cariDataNama = jobs?.filter(createFilter(cariNama, KEYS_TO_FILTERS));
 
   
     return (
@@ -80,6 +112,7 @@ const Home = (props) =>  {
           <TextInput
             placeholder="Cari disini"
             placeholderTextColor="#B0B0B0"
+            onChangeText={ (data) => { cariUpdate(data)}}
             style={{
               fontFamily: 'Montserrat-Medium',
               paddingHorizontal: 20,
@@ -112,7 +145,7 @@ const Home = (props) =>  {
               
             />
           ) : (
-            jobs?.map(item => (
+            cariDataNama?.map(item => (
           <View
             key={item.id}
             style={{

@@ -12,6 +12,9 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  UPDATE_AVATAR_REQUEST,
+  UPDATE_AVATAR_FAILED,
+  UPDATE_AVATAR_SUCCESS,
 } from '../../const';
 
 const INITIAL_STATE = {
@@ -35,6 +38,7 @@ export const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
       return {
         ...state,
         isLoggin: false,
+        isLoading : false
       };
     case LOGIN_FAILED:
       return {
@@ -92,6 +96,19 @@ export const userRegisterReducer = (state = { userInfo : [] }, action) => {
     case USER_REGISTER_SUCCESS:
       return {loading: false, userInfo: action.payload};
     case USER_REGISTER_FAIL:
+      return {loading: false, error: action.payload};
+    default:
+      return state;
+  }
+};
+
+export const userUpdatePhotoReducer = (state = {userInfo: []}, action) => {
+  switch (action.type) {
+    case UPDATE_AVATAR_REQUEST:
+      return {loading: true};
+    case UPDATE_AVATAR_SUCCESS:
+      return {loading: false, userInfo: action.payload};
+    case UPDATE_AVATAR_FAILED:
       return {loading: false, error: action.payload};
     default:
       return state;

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "karyawan.app"
-               BlueprintName = "karyawan"
-               ReferencedContainer = "container:karyawan.xcodeproj">
+               BuildableName = "JayaBersamaRecruitment.app"
+               BlueprintName = "JayaBersamaRecruitment"
+               ReferencedContainer = "container:JayaBersamaRecruitment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "karyawanTests.xctest"
-               BlueprintName = "karyawanTests"
-               ReferencedContainer = "container:karyawan.xcodeproj">
+               BuildableName = "JayaBersamaRecruitmentTests.xctest"
+               BlueprintName = "JayaBersamaRecruitmentTests"
+               ReferencedContainer = "container:JayaBersamaRecruitment.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "karyawan.app"
-            BlueprintName = "karyawan"
-            ReferencedContainer = "container:karyawan.xcodeproj">
+            BuildableName = "JayaBersamaRecruitment.app"
+            BlueprintName = "JayaBersamaRecruitment"
+            ReferencedContainer = "container:JayaBersamaRecruitment.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "karyawan.app"
-            BlueprintName = "karyawan"
-            ReferencedContainer = "container:karyawan.xcodeproj">
+            BuildableName = "JayaBersamaRecruitment.app"
+            BlueprintName = "JayaBersamaRecruitment"
+            ReferencedContainer = "container:JayaBersamaRecruitment.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

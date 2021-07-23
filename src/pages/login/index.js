@@ -13,6 +13,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
 
 class Login extends Component {
   constructor(props) {
@@ -29,6 +31,8 @@ class Login extends Component {
       [type]: e,
     }));
   };
+  
+  
 
   handelClickLogin = () => {
     const {navigation, login} = this.props;
@@ -42,8 +46,7 @@ class Login extends Component {
 
   render() {
     const {isLogin, isLoading, message} = this.props;
-
-    console.warn(message)
+   
     if (isLoading) {
       return (
         <View

@@ -300,7 +300,8 @@ const DetailJob = (props) =>  {
                       marginVertical: 20,
                       fontSize: 15,
                     }}>
-                    Unggah CV/Resume, format PDF
+                    Unggah persyaratan :  1. Alasan melamar  2. Resume / Cv Kamu
+                    , jadikan satu dengan format PDF
                   </Text>
                   <TouchableOpacity
                     style={{

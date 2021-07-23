@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Image, Animated} from 'react-native';
 import {StackActions} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Splash extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class Splash extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const {logoAnime, logoText} = this.state;
     Animated.parallel([
       Animated.spring(logoAnime, {
@@ -33,6 +34,14 @@ export default class Splash extends Component {
         loadingSpinner: true,
       });
     });
+
+    
+    // const IsLogin = await AsyncStorage.getItem('access_token');
+
+    // if(IsLogin) { 
+    //   this.props.navigation.navigate('MainLayout');
+    // }
+  
 
     setTimeout(() => {
       this.props.navigation.navigate('Login')
