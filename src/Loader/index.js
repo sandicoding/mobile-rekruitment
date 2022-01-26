@@ -1,6 +1,3 @@
+import List from './BulletList';
 
-import List from './BulletList'
-
-export {
-    List
-}
+export {List};

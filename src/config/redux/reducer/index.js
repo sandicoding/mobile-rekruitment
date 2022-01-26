@@ -1,17 +1,25 @@
 import {combineReducers} from 'redux';
-import {AuthReducer, userRegisterReducer, userUpdatePhotoReducer} from './AuthReducer';
+import {
+  AuthReducer,
+  userRegisterReducer,
+  userUpdatePhotoReducer,
+} from './AuthReducer';
 import {JobListReducer, listJobDetails} from './JobReducer';
-import {MyApplyListReducer, DetailMyApplyListReducer , ApplyJobs} from './MyApplyReducer';
+import {
+  MyApplyListReducer,
+  DetailMyApplyListReducer,
+  ApplyJobs,
+} from './MyApplyReducer';
 
 const rootReducer = combineReducers({
   auth: AuthReducer,
   register: userRegisterReducer,
   jobsList: JobListReducer,
   jobsDetails: listJobDetails,
-  apply : ApplyJobs,
+  apply: ApplyJobs,
   applyList: MyApplyListReducer,
   DetailApply: DetailMyApplyListReducer,
-  UserUpdatePhoto : userUpdatePhotoReducer
+  UserUpdatePhoto: userUpdatePhotoReducer,
 });
 
 export default rootReducer;

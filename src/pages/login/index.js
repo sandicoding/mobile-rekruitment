@@ -14,7 +14,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
 class Login extends Component {
   constructor(props) {
@@ -31,8 +31,6 @@ class Login extends Component {
       [type]: e,
     }));
   };
-  
-  
 
   handelClickLogin = () => {
     const {navigation, login} = this.props;
@@ -46,7 +44,7 @@ class Login extends Component {
 
   render() {
     const {isLogin, isLoading, message} = this.props;
-   
+
     if (isLoading) {
       return (
         <View
@@ -55,7 +53,8 @@ class Login extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#fff',
-          }}>
+          }}
+        >
           <Image
             source={require('../../assets/image/loader.gif')}
             style={{width: wp(50), height: hp(50)}}
@@ -74,7 +73,8 @@ class Login extends Component {
             fontFamily: 'Montserrat-ExtraBold',
             fontSize: 18,
             marginTop: 13,
-          }}>
+          }}
+        >
           Login
         </Text>
 
@@ -95,7 +95,8 @@ class Login extends Component {
             style={{
               color: 'red',
               marginTop: 6,
-            }}>
+            }}
+          >
             Email pastikan terisi dengan benar!
           </Text>
         )}
@@ -117,7 +118,8 @@ class Login extends Component {
             style={{
               color: 'red',
               marginTop: 6,
-            }}>
+            }}
+          >
             password pastikan terisi dengan benar!
           </Text>
         )}
@@ -125,14 +127,16 @@ class Login extends Component {
         <View style={styles.viewInfo}>
           <Text style={styles.forgot_button}>anda belum punya akun ? </Text>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('Register')}>
+            onPress={() => this.props.navigation.navigate('Register')}
+          >
             <Text style={{color: 'blue'}}> Register </Text>
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity
           onPress={() => this.handelClickLogin()}
-          style={styles.loginBtn}>
+          style={styles.loginBtn}
+        >
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
       </View>
@@ -170,15 +174,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
 
-  forgot_button: {
-    
-    
-  },
+  forgot_button: {},
   viewInfo: {
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection : 'row',
-    marginTop : 10
+    flexDirection: 'row',
+    marginTop: 10,
   },
 
   loginBtn: {
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
 
 const mapStateToprops = ({auth}) => ({
   isLogin: auth.isLoggin,
-  message : auth.message,
+  message: auth.message,
   isLoading: auth.isLoading,
 });
 

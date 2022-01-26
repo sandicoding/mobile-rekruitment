@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button} from 'react-native-elements';
 import {
   Image,
@@ -14,19 +14,17 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {registerAction} from '../../../config/redux/action/AuthAction';
-import { useSelector, useDispatch } from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
-const EditProfile = (props) => {
-    
-
-    return (
-        <ScrollView>
-            <View style={styles.container}>
-                <Text>Edit Profile</Text>
-            </View>
-        </ScrollView>
-    )
-}
+const EditProfile = props => {
+  return (
+    <ScrollView>
+      <View style={styles.container}>
+        <Text>Edit Profile</Text>
+      </View>
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -78,4 +76,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditProfile
+export default EditProfile;

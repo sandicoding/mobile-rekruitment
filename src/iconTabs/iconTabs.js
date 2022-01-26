@@ -25,7 +25,8 @@ const IconTabs = ({focused, icon, label}) => {
           style={{
             color: focused ? COLORS.white : COLORS.secondary,
             ...FONTS.h4,
-          }}>
+          }}
+        >
           {label}
         </Text>
       )}

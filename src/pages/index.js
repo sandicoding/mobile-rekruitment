@@ -8,4 +8,14 @@ import Splash from './splash';
 import DetailJob from './job/component/DetailJob';
 import DetailStatus from './status/component/DetailStatus';
 
-export {Home, Profile, Job, Status, Login, Register, DetailJob, DetailStatus, Splash};
+export {
+  Home,
+  Profile,
+  Job,
+  Status,
+  Login,
+  Register,
+  DetailJob,
+  DetailStatus,
+  Splash,
+};
