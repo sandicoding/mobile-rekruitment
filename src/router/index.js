@@ -7,7 +7,7 @@ import {setHeaderToken} from '../config/axios/setHeaderToken';
 import {useSelector} from 'react-redux';
 import EditProfile from '../pages/profile/components/EditProfile';
 const Stack = createStackNavigator();
-const Router = ({ navigation }) => {
+const Router = ({navigation}) => {
   const state = useSelector(state => state);
 
   const {auth} = state;
@@ -24,18 +24,17 @@ const Router = ({ navigation }) => {
   useEffect(() => {
     getToken(auth?.accessToken);
     setHeaderToken(token);
-      
   }, [state, token]);
 
   // console.warn(auth)
-  
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-      }}>
-      {token == null ? (
+      }}
+    >
+      {token === null ? (
         <>
           <Stack.Screen
             name="Splash"
@@ -54,7 +53,6 @@ const Router = ({ navigation }) => {
             component={Register}
           />
         </>
-      
       ) : (
         <>
           <Stack.Screen name="MainLayout" component={Tabs} />
@@ -77,7 +75,6 @@ const Router = ({ navigation }) => {
       )}
     </Stack.Navigator>
   );
-  
 };
 
 export default Router;
