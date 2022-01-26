@@ -1,16 +1,16 @@
 import {
-  DETAILS_LOWONGAN_FAILED, 
+  DETAILS_LOWONGAN_FAILED,
   DETAILS_LOWONGAN_REQUEST,
   DETAILS_LOWONGAN_SUCCESS,
   LOWONGAN_FAILED,
   LOWONGAN_REQUEST,
-  LOWONGAN_SUCCESS
-  } from '../../const';
+  LOWONGAN_SUCCESS,
+} from '../../const';
 
 const initialState = {
   jobs: [],
 };
-export const JobListReducer = (state = initialState, action) =>  {
+export const JobListReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOWONGAN_REQUEST:
       return {
@@ -30,14 +30,14 @@ export const JobListReducer = (state = initialState, action) =>  {
     default:
       return state;
   }
-}
+};
 
-export const listJobDetails = (state = { jobsDetail : [] }, action ) => {
+export const listJobDetails = (state = {jobsDetail: []}, action) => {
   switch (action.type) {
     case DETAILS_LOWONGAN_REQUEST:
       return {
         loading: true,
-        ...state
+        ...state,
       };
     case DETAILS_LOWONGAN_SUCCESS:
       return {
@@ -52,4 +52,4 @@ export const listJobDetails = (state = { jobsDetail : [] }, action ) => {
     default:
       return state;
   }
-}
+};

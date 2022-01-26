@@ -35,16 +35,14 @@ export default class Splash extends Component {
       });
     });
 
-    
     // const IsLogin = await AsyncStorage.getItem('access_token');
 
-    // if(IsLogin) { 
+    // if(IsLogin) {
     //   this.props.navigation.navigate('MainLayout');
     // }
-  
 
     setTimeout(() => {
-      this.props.navigation.navigate('Login')
+      this.props.navigation.navigate('Login');
     }, 3000);
   }
 
@@ -58,7 +56,8 @@ export default class Splash extends Component {
           width: '100%',
           height: '100%',
           backgroundColor: '#fff',
-        }}>
+        }}
+      >
         <Animated.View
           style={{
             opacity: this.state.logoAnime,
@@ -66,7 +65,8 @@ export default class Splash extends Component {
               inputRange: [0, 1],
               outputRange: [80, 0],
             }),
-          }}>
+          }}
+        >
           <Image
             style={{
               marginBottom: 20,
@@ -80,12 +80,14 @@ export default class Splash extends Component {
         <Animated.View
           style={{
             opacity: this.state.logoText,
-          }}>
+          }}
+        >
           <Text
             style={{
               fontFamily: 'Montserrat-ExtraBold',
               fontSize: 20,
-            }}>
+            }}
+          >
             Karir CV Jaya Bersama
           </Text>
         </Animated.View>

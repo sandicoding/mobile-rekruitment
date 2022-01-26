@@ -38,7 +38,7 @@ export const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
       return {
         ...state,
         isLoggin: false,
-        isLoading : false
+        isLoading: false,
       };
     case LOGIN_FAILED:
       return {
@@ -88,8 +88,7 @@ export const AuthReducer = (state = INITIAL_STATE, {type, payload}) => {
   }
 };
 
-
-export const userRegisterReducer = (state = { userInfo : [] }, action) => {
+export const userRegisterReducer = (state = {userInfo: []}, action) => {
   switch (action.type) {
     case USER_REGISTER_REQUEST:
       return {loading: true};
@@ -114,5 +113,3 @@ export const userUpdatePhotoReducer = (state = {userInfo: []}, action) => {
       return state;
   }
 };
-
-

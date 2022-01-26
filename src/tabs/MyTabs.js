@@ -23,7 +23,8 @@ const Tabs = () => {
           borderTopColor: 'transparent',
           marginBottom: 20,
         },
-      }}>
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}

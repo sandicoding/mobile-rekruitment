@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -35,7 +35,7 @@ class Register extends Component {
   };
 
   handelClickRegister = () => {
-    const { registerAction, navigation } = this.props
+    const {registerAction, navigation} = this.props;
     const {name, email, no_telpon, alamat, password} = this.state;
     const dataRegister = {
       name,
@@ -45,7 +45,6 @@ class Register extends Component {
       password,
     };
     registerAction(dataRegister, navigation);
- 
   };
 
   render() {
@@ -66,7 +65,8 @@ class Register extends Component {
               fontFamily: 'Montserrat-ExtraBold',
               fontSize: 18,
               marginTop: 13,
-            }}>
+            }}
+          >
             Register
           </Text>
 
@@ -139,7 +139,8 @@ class Register extends Component {
           <Text style={styles.forgot_button}>
             anda punya akun ?{' '}
             <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Login')}>
+              onPress={() => this.props.navigation.navigate('Login')}
+            >
               <Text style={{color: 'blue'}}> Login </Text>
             </TouchableOpacity>
           </Text>
@@ -180,8 +181,6 @@ class Register extends Component {
                 loading
               />
             )}
-
-           
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -232,7 +231,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 40,
     backgroundColor: 'black',
-    marginBottom : 20
+    marginBottom: 20,
   },
   loginText: {
     color: 'white',
@@ -244,5 +243,3 @@ const mapStateToprops = ({register}) => ({
 });
 
 export default connect(mapStateToprops, {registerAction})(Register);
-
-

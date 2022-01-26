@@ -35,25 +35,20 @@ export const login =
       .post(`${env.API_URL}/login`, data, config)
       .then(async result => {
         if (result.data) {
-          let response = result.data;
-          let token = response.data.access_token;
-          let user = response.data?.user;
+          const response = result.data;
+          const token = response.data.access_token;
+          const user = response.data?.user;
 
-          
           await AsyncStorage.setItem('access_token', token);
           await AsyncStorage.setItem('user', JSON.stringify(user));
-          
-          
 
           dispatch({type: SET_USER, payload: user});
           dispatch({type: SET_TOKEN, payload: token});
           dispatch({type: SET_IS_LOGIN});
           dispatch({type: IS_LOADING});
           setHeaderToken(token);
-          
-          
-          navigation.navigate("MainLayout")
-          
+
+          navigation.navigate('MainLayout');
         }
       })
       .catch(err => {
@@ -64,20 +59,16 @@ export const login =
       });
   };
 
-
-export const registerAction = (dataRegister, navigation) => async (dispatch) => {
-
+export const registerAction = (dataRegister, navigation) => async dispatch => {
   try {
-    
-    dispatch({ type : USER_REGISTER_REQUEST})
+    dispatch({type: USER_REGISTER_REQUEST});
 
-    
     const {data} = await axios.post(`${env.API_URL}/register`, dataRegister);
 
     dispatch({
-      type : USER_REGISTER_SUCCESS,
-      payload : data.data
-    })
+      type: USER_REGISTER_SUCCESS,
+      payload: data.data,
+    });
 
     // let response = data.data;
     // let token = response.data.access_token;
@@ -91,21 +82,15 @@ export const registerAction = (dataRegister, navigation) => async (dispatch) => 
     // setHeaderToken(token);
 
     navigation.navigate('Login');
-
-
-
-
-
   } catch (error) {
     dispatch({
-      type : USER_REGISTER_FAIL,
-      payload : error.response.data.message
-    })
+      type: USER_REGISTER_FAIL,
+      payload: error.response.data.message,
+    });
   }
-}
+};
 
-
-export const UpdatePhoto = (file) => async dispatch => {
+export const UpdatePhoto = file => async dispatch => {
   try {
     dispatch({type: UPDATE_AVATAR_REQUEST});
 
@@ -128,9 +113,7 @@ export const UpdatePhoto = (file) => async dispatch => {
       payload: error.response.data.message,
     });
   }
-};  
-
-
+};
 
 export const logout = () => async dispatch => {
   await AsyncStorage.removeItem('access_token');
@@ -140,7 +123,4 @@ export const logout = () => async dispatch => {
   dispatch({type: SET_USER, payload: {}});
   dispatch({type: SET_TOKEN, payload: null});
   dispatch({type: LOGOUT, payload: false});
-  
-
-  
 };
