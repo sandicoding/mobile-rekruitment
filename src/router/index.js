@@ -35,7 +35,7 @@ const Router = ({ navigation }) => {
       screenOptions={{
         headerShown: false,
       }}>
-      {token == null ? (
+      {token === null ? (
         <>
           <Stack.Screen
             name="Splash"
